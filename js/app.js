@@ -40,6 +40,7 @@ function renderTemplates() {
 }
 
 window.templatesStore.suscribe(renderTemplates);
+window.templatesStore.suscribe(saveTemplates);
 
 document.addEventListener("DOMContentLoaded", function () {
   window.templatesStore.initializeStore();
