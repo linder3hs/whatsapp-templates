@@ -43,24 +43,21 @@ function createStore(initialState = []) {
   }
 
   function initializeStore() {
-    const newTemplates = [
-      new Template(
-        "Bienvenida",
-        "Hola me llamo Linder Hassinger, bienvenido al curso de progrmación funcional",
-        "#hash1, #hash2",
-        "link1",
-        "date1"
-      ),
-      new Template(
-        "Oferta especial",
-        "Aprovecha esta oferta unica por el mes de Abril",
-        "#hash1, #hash2",
-        "link1",
-        "date1"
-      ),
-    ];
+    // localStorage.getItem("templates") cuando no existe es un null
+    const templates = localStorage.getItem("templates");
+    const newTemplates = templates === null ? [] : JSON.parse(templates);
+    // re-instanciacion
+    const mappedTemplates = newTemplates.map(function (newTemplate) {
+      return new Template(
+        newTemplate.title,
+        newTemplate.message,
+        newTemplate.hashTag,
+        newTemplate.link,
+        newTemplate.date
+      );
+    });
 
-    setState(newTemplates);
+    setState(mappedTemplates);
   }
 
   return {
