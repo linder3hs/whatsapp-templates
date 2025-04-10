@@ -28,6 +28,12 @@ function createStore(initialState = []) {
     // ... => spread operator
     const newState = [...state, newTemplate];
 
+    showNotification(
+      "success",
+      "Notificación Creada",
+      "Notificación creada correctamente"
+    );
+
     setState(newState);
   }
 
